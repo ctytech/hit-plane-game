@@ -4,7 +4,7 @@ package com.tarena.fly;
  * 子弹类:是飞行物
  */
 public class Bullet extends FlyingObject {
-	private int speed = 3;  //移动的速度
+	private int speed = 5;  //移动的速
 	
 	/** 初始化数据 */
 	public Bullet(int x,int y){

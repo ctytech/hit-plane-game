@@ -5,7 +5,7 @@ import java.util.Random;
 /** 蜜蜂 */
 public class Bee extends FlyingObject implements Award{
 	private int xSpeed = 1;   //x坐标移动速度
-	private int ySpeed = 2;   //y坐标移动速度
+	private int ySpeed = 7;   //y坐标移动速度
 	private int awardType;    //奖励类型
 	
 	/** 初始化数据 */
