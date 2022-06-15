@@ -157,12 +157,12 @@ public class ShootGame extends JPanel {
 				}
 			}
 
-			@Override
-			public void mouseExited(MouseEvent e) { // 鼠标退出
-				if (state == RUNNING) { // 游戏未结束，则设置其为暂停
-					state = PAUSE;
-				}
-			}
+			//@Override
+			//public void mouseExited(MouseEvent e) { // 鼠标退出
+			//	if (state == RUNNING) { // 游戏未结束，则设置其为暂停
+			//		state = PAUSE;
+			//	}
+			//}
 
 			@Override
 			public void mouseClicked(MouseEvent e) { // 鼠标点击
@@ -240,7 +240,7 @@ public class ShootGame extends JPanel {
 	/** 射击 */
 	public void shootAction() {
 		shootIndex++;
-		if (shootIndex % 30 == 0) { // 300毫秒发一颗
+		if (shootIndex % 35 == 0) { // 300毫秒发一颗
 			Bullet[] bs = hero.shoot(); // 英雄打出子弹
 			bullets = Arrays.copyOf(bullets, bullets.length + bs.length); // 扩容
 			System.arraycopy(bs, 0, bullets, bullets.length - bs.length,
