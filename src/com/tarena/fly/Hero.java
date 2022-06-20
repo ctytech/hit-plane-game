@@ -2,106 +2,106 @@ package com.tarena.fly;
 import java.awt.image.BufferedImage;
 
 /**
- * Ó¢ÐÛ»ú:ÊÇ·ÉÐÐÎï
+ * è‹±é›„æœº:æ˜¯é£žè¡Œç‰©
  */
 public class Hero extends FlyingObject{
 	
-	private BufferedImage[] images = {};  //Ó¢ÐÛ»úÍ¼Æ¬
-	private int index = 0;                //Ó¢ÐÛ»úÍ¼Æ¬ÇÐ»»Ë÷Òý
+	private BufferedImage[] images = {};  //è‹±é›„æœºå›¾ç‰‡
+	private int index = 0;                //è‹±é›„æœºå›¾ç‰‡åˆ‡æ¢ç´¢å¼•
 	
-	private int doubleFire;   //Ë«±¶»ðÁ¦
-	private int life;   //Ãü
+	private int doubleFire;   //åŒå€ç«åŠ›
+	private int life;   //å‘½
 	
-	/** ³õÊ¼»¯Êý¾Ý */
+	/** åˆå§‹åŒ–æ•°æ® */
 	public Hero(){
-		life = 3;   //³õÊ¼3ÌõÃü
-		doubleFire = 0;   //³õÊ¼»ðÁ¦Îª0
-		images = new BufferedImage[]{ShootGame.hero0, ShootGame.hero1}; //Ó¢ÐÛ»úÍ¼Æ¬Êý×é
-		image = ShootGame.hero0;   //³õÊ¼Îªhero0Í¼Æ¬
+		life = 3;   //åˆå§‹3æ¡å‘½
+		doubleFire = 0;   //åˆå§‹ç«åŠ›ä¸º0
+		images = new BufferedImage[]{ShootGame.hero0, ShootGame.hero1}; //è‹±é›„æœºå›¾ç‰‡æ•°ç»„
+		image = ShootGame.hero0;   //åˆå§‹ä¸ºhero0å›¾ç‰‡
 		width = image.getWidth();
 		height = image.getHeight();
 		x = 150;
 		y = 400;
 	}
 	
-	/** »ñÈ¡Ë«±¶»ðÁ¦ */
+	/** èŽ·å–åŒå€ç«åŠ› */
 	public int isDoubleFire() {
 		return doubleFire;
 	}
 
-	/** ÉèÖÃË«±¶»ðÁ¦ */
+	/** è®¾ç½®åŒå€ç«åŠ› */
 	public void setDoubleFire(int doubleFire) {
 		this.doubleFire = doubleFire;
 	}
 	
-	/** Ôö¼Ó»ðÁ¦ */
+	/** å¢žåŠ ç«åŠ› */
 	public void addDoubleFire(){
 		doubleFire = 40;
 	}
 	
-	/** ÔöÃü */
-	public void addLife(){  //ÔöÃü
+	/** å¢žå‘½ */
+	public void addLife(){  //å¢žå‘½
 		life++;
 	}
 	
-	/** ¼õÃü */
-	public void subtractLife(){   //¼õÃü
+	/** å‡å‘½ */
+	public void subtractLife(){   //å‡å‘½
 		life--;
 	}
 	
-	/** »ñÈ¡Ãü */
+	/** èŽ·å–å‘½ */
 	public int getLife(){
 		return life;
 	}
 	
-	/** µ±Ç°ÎïÌåÒÆ¶¯ÁËÒ»ÏÂ£¬Ïà¶Ô¾àÀë£¬x,yÊó±êÎ»ÖÃ  */
+	/** å½“å‰ç‰©ä½“ç§»åŠ¨äº†ä¸€ä¸‹ï¼Œç›¸å¯¹è·ç¦»ï¼Œx,yé¼ æ ‡ä½ç½®  */
 	public void moveTo(int x,int y){   
 		this.x = x - width/2;
 		this.y = y - height/2;
 	}
 
-	/** Ô½½ç´¦Àí */
+	/** è¶Šç•Œå¤„ç† */
 	@Override
 	public boolean outOfBounds() {
 		return false;  
 	}
 
-	/** ·¢Éä×Óµ¯ */
+	/** å‘å°„å­å¼¹ */
 	public Bullet[] shoot(){   
-		int xStep = width/4;      //4°ë
-		int yStep = 20;  //²½
-		if(doubleFire>0){  //Ë«±¶»ðÁ¦
+		int xStep = width/4;      //4åŠ
+		int yStep = 20;  //æ­¥
+		if(doubleFire>0){  //åŒå€ç«åŠ›
 			Bullet[] bullets = new Bullet[2];
-			bullets[0] = new Bullet(x+xStep,y-yStep);  //y-yStep(×Óµ¯¾à·É»úµÄÎ»ÖÃ)
+			bullets[0] = new Bullet(x+xStep,y-yStep);  //y-yStep(å­å¼¹è·é£žæœºçš„ä½ç½®)
 			bullets[1] = new Bullet(x+3*xStep,y-yStep);
 			return bullets;
-		}else{      //µ¥±¶»ðÁ¦
+		}else{      //å•å€ç«åŠ›
 			Bullet[] bullets = new Bullet[1];
 			bullets[0] = new Bullet(x+2*xStep,y-yStep);  
 			return bullets;
 		}
 	}
 
-	/** ÒÆ¶¯ */
+	/** ç§»åŠ¨ */
 	@Override
 	public void step() {
 		if(images.length>0){
-			image = images[index++/10%images.length];  //ÇÐ»»Í¼Æ¬hero0£¬hero1
+			image = images[index++/10%images.length];  //åˆ‡æ¢å›¾ç‰‡hero0ï¼Œhero1
 		}
 	}
 	
-	/** Åö×²Ëã·¨ */
+	/** ç¢°æ’žç®—æ³• */
 	public boolean hit(FlyingObject other){
 		
-		int x1 = other.x - this.width/2;                 //x×ø±ê×îÐ¡¾àÀë
-		int x2 = other.x + this.width/2 + other.width;   //x×ø±ê×î´ó¾àÀë
-		int y1 = other.y - this.height/2;                //y×ø±ê×îÐ¡¾àÀë
-		int y2 = other.y + this.height/2 + other.height; //y×ø±ê×î´ó¾àÀë
+		int x1 = other.x - this.width/4;                 //xåæ ‡æœ€å°è·ç¦»
+		int x2 = other.x + this.width/4 + other.width;   //xåæ ‡æœ€å¤§è·ç¦»
+		int y1 = other.y - this.height/4;                //yåæ ‡æœ€å°è·ç¦»
+		int y2 = other.y + this.height/4 + other.height; //yåæ ‡æœ€å¤§è·ç¦»
 	
-		int herox = this.x + this.width/2;               //Ó¢ÐÛ»úx×ø±êÖÐÐÄµã¾àÀë
-		int heroy = this.y + this.height/2;              //Ó¢ÐÛ»úy×ø±êÖÐÐÄµã¾àÀë
+		int herox = this.x + this.width/2;               //è‹±é›„æœºxåæ ‡ä¸­å¿ƒç‚¹è·ç¦»
+		int heroy = this.y + this.height/2;              //è‹±é›„æœºyåæ ‡ä¸­å¿ƒç‚¹è·ç¦»
 		
-		return herox>x1 && herox<x2 && heroy>y1 && heroy<y2;   //Çø¼ä·¶Î§ÄÚÎª×²ÉÏÁË
+		return herox>x1 && herox<x2 && heroy>y1 && heroy<y2;   //åŒºé—´èŒƒå›´å†…ä¸ºæ’žä¸Šäº†
 	}
 	
 }
